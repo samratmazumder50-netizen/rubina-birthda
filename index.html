@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Rubina ❤️ — From Samrat</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{
+  font-family: Georgia, "Times New Roman", serif;
+  background:#09050a;color:#fff;
+}
+#app{position:relative;width:100%;height:100%;overflow:hidden}
+.bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,105,180,.20),transparent 35%),
+    radial-gradient(circle at 80% 80%,rgba(255,70,120,.18),transparent 35%),
+    #09050a;
+}
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.particle{
+  position:absolute;bottom:-30px;opacity:.75;
+  animation:float linear infinite;
+  color:#ffb6d9;
+}
+@keyframes float{to{transform:translateY(-115vh) rotate(360deg);opacity:0}}
+.screen{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  padding:20px;transition:opacity .8s,transform .8s;
+}
+.hidden{opacity:0;pointer-events:none;transform:scale(1.04)}
+.card{
+  width:min(92vw,520px);height:min(90vh,850px);
+  position:relative;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;border:1px solid rgba(255,255,255,.18);
+  border-radius:28px;padding:28px;
+  background:rgba(15,8,16,.56);backdrop-filter:blur(10px);
+  box-shadow:0 25px 80px rgba(0,0,0,.55);
+}
+.cover h1{font-size:clamp(38px,11vw,68px);line-height:1.02;margin-bottom:14px}
+.cover p{font-size:18px;opacity:.82;margin-bottom:30px}
+.glow{color:#ffd4e8;text-shadow:0 0 25px rgba(255,100,170,.7)}
+button{
+  border:0;border-radius:999px;padding:14px 24px;font-size:16px;font-weight:700;
+  color:#fff;background:linear-gradient(135deg,#ff4f9a,#ff758c);
+  box-shadow:0 10px 30px rgba(255,70,140,.3);cursor:pointer;
+}
+button:active{transform:scale(.97)}
+.story{padding:18px}
+.photo-wrap{
+  width:min(78vw,360px);height:min(53vh,500px);border-radius:22px;overflow:hidden;
+  box-shadow:0 18px 55px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);
+  background:#160c14;
+}
+.photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.message{
+  margin-top:20px;min-height:105px;display:flex;align-items:center;justify-content:center;
+  font-size:clamp(18px,4.8vw,25px);line-height:1.5;max-width:480px;
+  text-shadow:0 2px 15px #000;
+  animation:messageIn .8s ease both;
+}
+@keyframes messageIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.progress{position:absolute;top:14px;left:18px;right:18px;display:flex;gap:5px}
+.bar{height:3px;flex:1;background:rgba(255,255,255,.22);border-radius:9px;overflow:hidden}
+.bar.active:after{content:"";display:block;height:100%;background:#ffd0e3;animation:fill var(--duration) linear forwards}
+@keyframes fill{from{width:0}to{width:100%}}
+.counter{position:absolute;bottom:12px;font-size:12px;opacity:.55}
+.tap{
+  position:absolute;bottom:28px;opacity:.6;font-size:12px;letter-spacing:1px;
+}
+#music{position:absolute;opacity:0;pointer-events:none}
+@media(max-height:650px){
+  .photo-wrap{height:43vh}
+  .message{margin-top:12px;font-size:17px;min-height:75px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="bg"></div>
+  <div class="particles" id="particles"></div>
+  <audio id="music" loop preload="auto"><source src="song.mp3" type="audio/mpeg"></audio>
+
+  <section class="screen" id="cover">
+    <div class="card cover">
+      <div style="font-size:54px;margin-bottom:10px">🎂</div>
+      <h1 class="glow">Happy Birthday<br>Rubina ❤️</h1>
+      <p>Ek chhota sa surprise… sirf tumhare liye.</p>
+      <button id="start">Tap to open 💗</button>
+      <div class="tap">🎵 Music starts with your tap</div>
+    </div>
+  </section>
+
+  <section class="screen hidden" id="story">
+    <div class="card story">
+      <div class="progress" id="progress"></div>
+      <div class="photo-wrap"><img id="photo" src="photos/photo1.jpg" alt="Rubina"></div>
+      <div class="message" id="message"></div>
+      <div class="counter" id="counter"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const slides = [
+  {photo:1, text:"You are my just half soul… Tumhare baare mein kya hi bolu, mere shabd kam pad jayenge. Jab tumse mila, meri life mein ek turning point aaya."},
+  {photo:2, text:"Main itna khush kabhi kisi ke saath nahi raha, jaisa tumhare saath raha hoon. Jaise tum mujhe samajhti ho, shayad aaj tak koi mujhe itna samajh hi nahi paya."},
+  {photo:3, text:"Tum meri life ka ek best part ho. Aur humari story… yaad hai? Hum do din mein kitne paas aa gaye the. Ekdum anjaan shakhs se itni jaan-pehchaan ban gayi thi."},
+  {photo:4, text:"Humari kitni yaadein hain… chup-chup ke milna, kitne logon se kitne jhooth bolkar ek dusre se milna. Woh sab moments aaj bhi mere liye special hain."},
+  {photo:5, text:"Hum dono hamesha ek dusre ki baahon mein soya karte the. Ek dusre ke liye khana banate the. Mujhe aaj bhi yaad hai tumne subah-subah mere liye uthkar khana banaya tha."},
+  {photo:4, text:"Puri raat mere karaton ki wajah se so nahi paayi thi… phir bhi kabhi chali nahi gayi. Tumne usko bhi apni aadat bana li thi. ❤️"},
+  {photo:5, text:"Phir ekdum se tum thoda door chali gayi. Hum dono ki raatein kaafi akele-aekele beeta karti thi. Mushkil tha woh din bhi… lekin phir bhi humne sab kuch maan liya."},
+  {photo:4, text:"Phir bhi saath nahi chhoda. Aur aaj bhi hum saath hain. Shayad isi ko humari story ki sabse khoobsurat baat kehte hain. ❤️"},
+  {photo:5, text:"Main chahta hoon ki humara ye rishta kabhi khatam na ho. Hum dono ek hi jagah job karein, saath mein naye memories banayein… aur har birthday tum mere paas ho."},
+  {photo:4, text:"Tum mujhe bahut yaad aaogi. Tumhari yaadein mujhe bahut satayengi… lekin main chahta hoon ki chahe distance kitna bhi ho, humara saath kabhi kam na ho."},
+  {photo:5, text:"Happy Birthday, Rubina ❤️ Tum meri life ka woh hissa ho jise main kabhi khona nahi chahta. — Samrat"}
+];
+
+const DURATION = 6500;
+let index = 0, timer = null;
+const cover = document.getElementById('cover');
+const story = document.getElementById('story');
+const photo = document.getElementById('photo');
+const message = document.getElementById('message');
+const progress = document.getElementById('progress');
+const counter = document.getElementById('counter');
+const music = document.getElementById('music');
+
+function makeParticles(){
+  const p=document.getElementById('particles');
+  for(let i=0;i<28;i++){
+    const s=document.createElement('span');
+    s.className='particle';
+    s.textContent=Math.random()>.45?'♥':'✦';
+    s.style.left=(Math.random()*100)+'%';
+    s.style.fontSize=(10+Math.random()*16)+'px';
+    s.style.animationDuration=(7+Math.random()*10)+'s';
+    s.style.animationDelay=(-Math.random()*12)+'s';
+    p.appendChild(s);
+  }
+}
+function renderBars(){
+  progress.innerHTML='';
+  slides.forEach((_,i)=>{
+    const b=document.createElement('div'); b.className='bar'+(i===index?' active':'');
+    if(i===index)b.style.setProperty('--duration',DURATION+'ms');
+    progress.appendChild(b);
+  });
+}
+function render(){
+  const s=slides[index];
+  photo.src='photos/photo'+s.photo+'.jpg';
+  message.style.animation='none';
+  void message.offsetWidth;
+  message.textContent=s.text;
+  message.style.animation='messageIn .8s ease both';
+  counter.textContent=(index+1)+' / '+slides.length;
+  renderBars();
+  clearTimeout(timer);
+  timer=setTimeout(next,DURATION);
+}
+function next(){
+  if(index < slides.length-1){index++;render();}
+  else{
+    clearTimeout(timer);
+    message.textContent="Once again… Happy Birthday, Rubina. ❤️";
+    renderBars();
+  }
+}
+document.getElementById('start').addEventListener('click',async()=>{
+  cover.classList.add('hidden');
+  story.classList.remove('hidden');
+  music.volume=.72;
+  try{await music.play();}catch(e){}
+  render();
+});
+document.getElementById('app').addEventListener('click',(e)=>{
+  if(e.target.closest('#start'))return;
+  if(!story.classList.contains('hidden')) next();
+});
+makeParticles();
+</script>
+</body>
+</html>
