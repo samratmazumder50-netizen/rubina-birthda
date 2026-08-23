@@ -151,7 +151,7 @@ function renderBars(){
 }
 function render(){
   const s=slides[index];
-  photo.src='photos/photo'+s.photo+'.jpg';
+  photo.src='photos/'+['','IMG-20260808-WA0006.jpg','IMG_20260212_193626.jpg','IMG_20260215_181554.jpg','IMG_20260223_001921.jpg','IMG_20260302_222100.jpg'][s.photo];
   message.style.animation='none';
   void message.offsetWidth;
   message.textContent=s.text;
