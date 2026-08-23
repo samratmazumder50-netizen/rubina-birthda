@@ -105,17 +105,18 @@ button:active{transform:scale(.97)}
 
 <script>
 const slides = [
-  {photo:1, text:"You are my just half soul… Tumhare baare mein kya hi bolu, mere shabd kam pad jayenge. Jab tumse mila, meri life mein ek turning point aaya."},
-  {photo:2, text:"Main itna khush kabhi kisi ke saath nahi raha, jaisa tumhare saath raha hoon. Jaise tum mujhe samajhti ho, shayad aaj tak koi mujhe itna samajh hi nahi paya."},
-  {photo:3, text:"Tum meri life ka ek best part ho. Aur humari story… yaad hai? Hum do din mein kitne paas aa gaye the. Ekdum anjaan shakhs se itni jaan-pehchaan ban gayi thi."},
-  {photo:4, text:"Humari kitni yaadein hain… chup-chup ke milna, kitne logon se kitne jhooth bolkar ek dusre se milna. Woh sab moments aaj bhi mere liye special hain."},
-  {photo:5, text:"Hum dono hamesha ek dusre ki baahon mein soya karte the. Ek dusre ke liye khana banate the. Mujhe aaj bhi yaad hai tumne subah-subah mere liye uthkar khana banaya tha."},
-  {photo:4, text:"Puri raat mere karaton ki wajah se so nahi paayi thi… phir bhi kabhi chali nahi gayi. Tumne usko bhi apni aadat bana li thi. ❤️"},
-  {photo:5, text:"Phir ekdum se tum thoda door chali gayi. Hum dono ki raatein kaafi akele-aekele beeta karti thi. Mushkil tha woh din bhi… lekin phir bhi humne sab kuch maan liya."},
-  {photo:4, text:"Phir bhi saath nahi chhoda. Aur aaj bhi hum saath hain. Shayad isi ko humari story ki sabse khoobsurat baat kehte hain. ❤️"},
-  {photo:5, text:"Main chahta hoon ki humara ye rishta kabhi khatam na ho. Hum dono ek hi jagah job karein, saath mein naye memories banayein… aur har birthday tum mere paas ho."},
-  {photo:4, text:"Tum mujhe bahut yaad aaogi. Tumhari yaadein mujhe bahut satayengi… lekin main chahta hoon ki chahe distance kitna bhi ho, humara saath kabhi kam na ho."},
-  {photo:5, text:"Happy Birthday, Rubina ❤️ Tum meri life ka woh hissa ho jise main kabhi khona nahi chahta. — Samrat"}
+  {photo:1, text:"You are my just half soul... Tumhare bina sab adhura sa lagta hai ❤️"},
+  {photo:2, text:"Main itna khush kabhi kisi ke saath nahi raha jitna tumhare saath hoon ❤️"},
+  {photo:3, text:"Tum meri life ka ek best part ho. Aur main hamesha tumhe special feel karana chahta hoon ❤️"},
+  {photo:4, text:"Humari kitni yaadein hain... chup-chup ke hansi, baatein aur woh cute moments ❤️"},
+  {photo:5, text:"Hum dono hamesha ek dusre ki baahon mein aise hi khush rahein ❤️"},
+  {photo:6, text:"Pur i raat mere karaton ki wajah se pareshan hone ke baad bhi tum mere saath ho 😄❤️"},
+  {photo:7, text:"Phir ekdum se tum thoda door chali gayi... lekin dil se kabhi door nahi hui ❤️"},
+  {photo:8, text:"Phir bhi saath nahi chhoda. Aur aaj bhi tum mere liye bahut special ho ❤️"},
+  {photo:9, text:"Main chahta hoon ki humara ye rishta hamesha aise hi bana rahe ❤️"},
+  {photo:10, text:"Tum mujhe bahut yaad aaogi. Tumhari har ek baat yaad rahegi ❤️"},
+  {photo:11, text:"Happy Birthday, Rubina ❤️ Tum meri life ki bahut special person ho."},
+  {photo:12, text:"Once again... Happy Birthday Rubina ❤️ Hamesha khush rehna!"}
 ];
 
 const DURATION = 6500;
@@ -151,7 +152,20 @@ function renderBars(){
 }
 function render(){
   const s=slides[index];
-  photo.src='photos/'+['','IMG-20260808-WA0006.jpg','IMG_20260212_193626.jpg','IMG_20260215_181554.jpg','IMG_20260223_001921.jpg','IMG_20260302_222100.jpg'][s.photo];
+  photo.src='photos/'+['',
+'IMG-20260808-WA0006.jpg',
+'IMG-20260823-WA0011.jpg',
+'IMG-20260823-WA0012.jpg',
+'IMG-20260823-WA0013.jpg',
+'IMG_20260212_193626.jpg',
+'IMG_20260215_181541.jpg',
+'IMG_20260215_181554.jpg',
+'IMG_20260223_001553.jpg',
+'IMG_20260223_001616.jpg',
+'IMG_20260223_001921.jpg',
+'IMG_20260302_222100.jpg',
+'IMG_20260419_204539.jpg'
+][s.photo];
   message.style.animation='none';
   void message.offsetWidth;
   message.textContent=s.text;
